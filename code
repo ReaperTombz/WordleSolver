@@ -1,0 +1,39 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+bool isValidWord(const std::string& word, const std::string& puzzle) {
+    std::string temp = puzzle;
+    for (char c : word) {
+        size_t pos = temp.find(c);
+        if (pos == std::string::npos) {
+            return false;
+        }
+        temp.erase(pos, 1);
+    }
+    return true;
+}
+
+int main() {
+    std::string puzzle = "etenrsi";
+    std::vector<std::string> words = { "tree", "sentences", "ten", "in", "sentence" };
+
+    std::cout << "Puzzle: " << puzzle << std::endl;
+    std::cout << "Words: ";
+    for (const std::string& word : words) {
+        std::cout << word << " ";
+    }
+    std::cout << std::endl;
+
+    std::cout << "Solved words: ";
+    for (const std::string& word : words) {
+        if (isValidWord(word, puzzle)) {
+            std::cout << word << " ";
+        }
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
+
